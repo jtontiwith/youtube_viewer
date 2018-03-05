@@ -53,7 +53,8 @@ console.log(theJSON);
 function resultIntoHtml(result) {
   console.log('resultIntoHtml running');
   /*return `<img src="${result.snippet.thumbnails.medium.url}" alt="image from youtube thumbnail">`;*/ 
-  return `<a class="yt_thumbnails" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src="${result.snippet.thumbnails.medium.url}"></a>`
+  return `<a class="yt_thumbnails" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img src="${result.snippet.thumbnails.medium.url}" alt="${result.snippet.title}"></a>`
+
 
 
 }
@@ -64,8 +65,9 @@ function displayData(data) {
   const results = data.items.map((item, index) =>
   resultIntoHtml(item));
   console.log("these are... " + results);
-  $('.js-search-results').html(results);
-
+  $('main').prop('hidden', false);
+  $('.js-search-results').html(`<p>You just got back ${results.length} results.</p>` + results);
+  //$('.js-search-results').html(`You just got back ${results.length} results.`);
   console.log('displayData ran through');
 
 
